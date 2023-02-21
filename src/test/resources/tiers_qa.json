@@ -1,0 +1,204 @@
+{
+    "content": [
+        {
+            "tierId": 10005,
+            "version": 0,
+            "name": "Tier_1_1",
+            "tierInQuotaRule": "1",
+            "tierOutOfQuotaRule": "1",
+            "description": "WithPlanAndPunished_WithPlanAndPunished",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10528,
+            "version": 0,
+            "name": "Tier_102_102",
+            "tierInQuotaRule": "102",
+            "tierOutOfQuotaRule": "102",
+            "description": "WiFiPlan_WiFiPlan",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10529,
+            "version": 0,
+            "name": "Tier_105_105",
+            "tierInQuotaRule": "105",
+            "tierOutOfQuotaRule": "105",
+            "description": "DenyWiFi_DenyWiFi",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10532,
+            "version": 0,
+            "name": "Tier_202_202",
+            "tierInQuotaRule": "202",
+            "tierOutOfQuotaRule": "202",
+            "description": "Natura_Natura",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10533,
+            "version": 0,
+            "name": "Tier_210_210",
+            "tierInQuotaRule": "210",
+            "tierOutOfQuotaRule": "210",
+            "description": "PreComRSWAVoipNOW_PreComRSWAVoipNOW",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10534,
+            "version": 0,
+            "name": "Tier_212_212",
+            "tierInQuotaRule": "212",
+            "tierOutOfQuotaRule": "212",
+            "description": "HSPreComPlano_HSPreComPlano",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10535,
+            "version": 0,
+            "name": "Tier_215_215",
+            "tierInQuotaRule": "215",
+            "tierOutOfQuotaRule": "215",
+            "description": "ControleWAVoip_ControleWAVoip",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10536,
+            "version": 0,
+            "name": "Tier_217_217",
+            "tierInQuotaRule": "217",
+            "tierOutOfQuotaRule": "217",
+            "description": "HSPosComPlano_HSPosComPlano",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10537,
+            "version": 0,
+            "name": "Tier_230_230",
+            "tierInQuotaRule": "230",
+            "tierOutOfQuotaRule": "230",
+            "description": "HSPosComPlanoSemControleFBTWWA_HSPosComPlanoSemControleFBTWWA",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10538,
+            "version": 0,
+            "name": "Tier_232_232",
+            "tierInQuotaRule": "232",
+            "tierOutOfQuotaRule": "232",
+            "description": "HSTOBLER_HSTOBLER",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10539,
+            "version": 0,
+            "name": "Tier_234_234",
+            "tierInQuotaRule": "234",
+            "tierOutOfQuotaRule": "234",
+            "description": "TOBLERRI_TOBLERRI",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10540,
+            "version": 0,
+            "name": "Tier_260_260",
+            "tierInQuotaRule": "260",
+            "tierOutOfQuotaRule": "260",
+            "description": "ControlecomPlanoSemControleFBTWWA_ControlecomPlanoSemControleFBTWWA",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10526,
+            "version": 0,
+            "name": "Tier_2_2",
+            "tierInQuotaRule": "2",
+            "tierOutOfQuotaRule": "2",
+            "description": "WithPlan_WithPlan",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10530,
+            "version": 0,
+            "name": "Tier_52_52",
+            "tierInQuotaRule": "52",
+            "tierOutOfQuotaRule": "52",
+            "description": "HsWithPlan_HsWithPlan",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10531,
+            "version": 0,
+            "name": "Tier_53_53",
+            "tierInQuotaRule": "53",
+            "tierOutOfQuotaRule": "53",
+            "description": "HsUncontrolled_HsUncontrolled",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10527,
+            "version": 0,
+            "name": "Tier_5_5",
+            "tierInQuotaRule": "5",
+            "tierOutOfQuotaRule": "5",
+            "description": "Deny_Deny",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10545,
+            "version": 0,
+            "name": "Tier_onDemand_105_105",
+            "tierInQuotaRule": "105",
+            "tierOutOfQuotaRule": "105",
+            "description": "",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10543,
+            "version": 0,
+            "name": "Tier_onDemand_56_56",
+            "tierInQuotaRule": "56",
+            "tierOutOfQuotaRule": "56",
+            "description": "",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10541,
+            "version": 0,
+            "name": "Tier_onDemand_5_5",
+            "tierInQuotaRule": "5",
+            "tierOutOfQuotaRule": "5",
+            "description": "",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10542,
+            "version": 0,
+            "name": "Tier_onDemand_6_6",
+            "tierInQuotaRule": "6",
+            "tierOutOfQuotaRule": "6",
+            "description": "",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
+            "tierId": 10544,
+            "version": 0,
+            "name": "Tier_onDemand_99_99",
+            "tierInQuotaRule": "99",
+            "tierOutOfQuotaRule": "99",
+            "description": "",
+            "ruleType": "STATIC_RULE_BASE"
+        }
+    ],
+    "first": true,
+    "last": true,
+    "offset": 0,
+    "limit": 50,
+    "totalElements": 20,
+    "numberOfElements": 20,
+    "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+    }
+}
