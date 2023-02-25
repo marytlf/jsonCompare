@@ -34,19 +34,18 @@ public class JsonReader {
         try {
             Path readerJson = Paths.get(".", "src", "test", "resources", fileName);
             BufferedReader reader = Files.newBufferedReader(readerJson);
+
             String line = readAllLines(reader);
     
+
             JSONObject jsonObj = new JSONObject(line);
-    
+            System.out.println(">>"+readerJson.toAbsolutePath());
             return jsonObj;
         } catch (Exception e) {
             // TODO: handle exception
             System.err.println("File not found.");
             return null;
         }
-       
-
-        
     }
     
 }
