@@ -1,6 +1,8 @@
 package oc.gui.ocguitools;
 
 
+import java.sql.Time;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,7 +75,7 @@ public class jsonCompare {
 
 	public String getIdName(String source_index_1){
 		//JSONObject jsObj_1 = this.returnJSONOject(source_index_1);
-		System.out.println("string >> "+source_index_1.toString());
+		//System.out.println("string >> "+source_index_1.toString());
 		String idAux = source_index_1;
 		if (idAux.contains("Id")){
 			//System.out.println("Id name exist. Id :: " +idAux);
@@ -104,6 +106,41 @@ public class jsonCompare {
 		return null;
 	}
 
+	public boolean equalsSubAtt(Object source_index_1, Object source_index_2, String attribute){
+
+
+		System.out.println("try attribute :: "+attribute);
+		JSONObject jsObj_1 = this.returnJSONOject(source_index_1.toString());
+		JSONObject jsObj_2 = this.returnJSONOject(source_index_2.toString());
+
+		for (String key : jsObj_1.keySet()){
+			//System.out.println("try size key1 :: "+jsObj_3.keySet().size());
+			//System.out.println("try size key2 :: "+jsObj_4.keySet().size());
+			if (jsObj_1.keySet().size() == jsObj_2.keySet().size()){
+				System.out.println("try after :: "+jsObj_1);
+				System.out.println("try after :: "+jsObj_2);
+				if (!jsObj_1.get(key).equals(null) && !jsObj_2.get(key).equals(null)){
+					if (jsObj_1.get(key).equals(jsObj_2.get(key))){
+						
+						System.out.println("Equals1 :: "+jsObj_1.get(key));
+						System.out.println("Equals2 :: "+jsObj_2.get(key));
+						//return true;
+					}else{
+						System.out.println("Diferent1 :: "+jsObj_1.get(key));
+						System.out.println("Diferent2 :: "+jsObj_2.get(key));
+						//return false;
+					}
+				}
+			}else{
+				return false;
+			}	
+		}
+		
+
+
+		return false;
+	}
+
 	
     public boolean equalsValues(Object source_index_1, Object source_index_2, String attribute){
 
@@ -115,23 +152,48 @@ public class jsonCompare {
 		//System.out.println(" len2 >> "+jsObj_2.length());
 		if (jsObj_1 != null && jsObj_2 != null){
 			try {
-				System.out.println("size1 :: "+jsObj_1.length());
-				System.out.println("size2 :: "+jsObj_2.length());
+				System.out.println(" 1 >> "+attribute);
 				if (jsObj_1.optString(attribute) == jsObj_2.optString(attribute)){		
-					System.out.println("att dentro if:: "+attribute);
-					if (jsObj_1.get(attribute) == jsObj_2.get(attribute)){
-						System.out.println("Equals Attribute :: "+attribute);
-						System.out.println("Equals1 :: "+jsObj_1.get(attribute));
-						System.out.println("Equals2 :: "+jsObj_2.get(attribute));
-						return true;
+					System.out.println(" 2>> "+attribute);
+					if (isValid(jsObj_1.toString()) && isValid(jsObj_2.toString()) ){
+						equalsSubAtt(jsObj_1.toString(),jsObj_2.toString(),attribute);
+					}else{
+						System.out.println("try NOT EQUALS :: ");
+						return false;
 					}
+					
+					
+				}else{
+					System.out.println("O QUE TEM AQUI " + jsObj_1.toString());
+
 				}
 			} catch (Exception e) {
 				System.out.println("NOT Equals exception:: "+jsObj_1.toString());
+				System.out.println("catch Equals11111 :: "+jsObj_1.get(attribute));
+				System.out.println("catch Equals11111 :: "+jsObj_2.get(attribute));
+				for (String ob : jsObj_1.keySet()){
+					//jsObj_1 = (JSONObject) jsObj_1.get(ob);
+					for (String ob2 : jsObj_2.keySet()){
+						//jsObj_2 = (JSONObject) jsObj_2.get(ob2);
+						//System.out.println("new loop key 1 :: "+ob);
+						//System.out.println("new loop key 2 :: "+ob2);
+						if (ob.equals(ob2)){
+							//System.out.println("new value 1 :: "+jsObj_1.get(attribute));
+							//System.out.println("new value 2 :: "+jsObj_2.get(attribute));
+							return true;
+						}
+
+					}
+
+				}
 				// TODO: handle exception
 				return false;
 			}
 			
+		}else{
+			if(jsObj_1 == null && source_index_1 != null){
+				System.out.println("nao é null ");
+			}
 		}
 
         return false;
@@ -205,20 +267,17 @@ public class jsonCompare {
 			
 			//String idName = getIdValue(value_1);
 			//System.out.println("Attribute Id Name: "+value_1.toString());
+			String idName = getIdName(value_1);
 			
 			source_2.forEach( (value_2) -> {
 				//System.out.println(" source_1 ::" + value_2);
-				String idName = getIdName(value_1);
-				String idNameAux = null;
+				
 				if (idName != null){
-					idNameAux = idName;
-				}else{
-					idName = idNameAux;
-				}
-				if (idName != null){
+					System.out.println("idname >> "+idName);
+					//System.out.println("keeeys :: " + value_1.toString());
 					if(equalsValues(value_1, value_2, idName)){
 						equalsAllValues(value_1, value_2);
-						System.out.println(" value ::" + value_1);
+						//System.out.println(" value ::" + value_1);
 						flagFile=true;
 					}
 				}
