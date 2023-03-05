@@ -1,7 +1,7 @@
 package oc.gui.ocguitools;
 
 
-import java.sql.Time;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -108,37 +108,43 @@ public class jsonCompare {
 
 	public boolean equalsSubAtt(Object source_index_1, Object source_index_2, String attribute){
 
-
+		Boolean flagEquals = false;
 		System.out.println("try attribute :: "+attribute);
 		JSONObject jsObj_1 = this.returnJSONOject(source_index_1.toString());
 		JSONObject jsObj_2 = this.returnJSONOject(source_index_2.toString());
 
 		for (String key : jsObj_1.keySet()){
-			//System.out.println("try size key1 :: "+jsObj_3.keySet().size());
-			//System.out.println("try size key2 :: "+jsObj_4.keySet().size());
 			if (jsObj_1.keySet().size() == jsObj_2.keySet().size()){
-				System.out.println("try after :: "+jsObj_1);
-				System.out.println("try after :: "+jsObj_2);
 				if (!jsObj_1.get(key).equals(null) && !jsObj_2.get(key).equals(null)){
-					if (jsObj_1.get(key).equals(jsObj_2.get(key))){
+					if (jsObj_1.get(key).equals(jsObj_2.get(key))){	
 						
-						System.out.println("Equals1 :: "+jsObj_1.get(key));
-						System.out.println("Equals2 :: "+jsObj_2.get(key));
+						flagEquals = true;
 						//return true;
 					}else{
-						System.out.println("Diferent1 :: "+jsObj_1.get(key));
-						System.out.println("Diferent2 :: "+jsObj_2.get(key));
-						//return false;
+						System.out.println("length :: "+jsObj_2.getJSONArray(key).length());
+						if (jsObj_2.getJSONArray(key).length() > 0 && jsObj_1.getJSONArray(key).length() > 0){
+
+							//System.out.println("Key [ "+key+" ] - Different Value [ "+jsObj_1.get(key)+" ]");
+							//System.out.println("Key [ "+key+" ] - Different Value [ "+jsObj_2.get(key)+" ]");
+							System.out.println("dentro do if ");
+							JSONArray jsonArray_1 = jsObj_1.getJSONArray(key);
+							JSONArray jsonArray_2 = jsObj_2.getJSONArray(key);
+							this.equalsSubAtt(jsonArray_1.toString(), jsonArray_2.toString(), key);							
+
+						}
+						
+						System.out.println("Key [ "+key+" ] - fora Different Value [ "+jsObj_2.get(key)+" ]");
+						//return flagEquals;
 					}
 				}
 			}else{
-				return false;
+				return flagEquals;
 			}	
 		}
 		
 
 
-		return false;
+		return flagEquals;
 	}
 
 	
@@ -152,48 +158,34 @@ public class jsonCompare {
 		//System.out.println(" len2 >> "+jsObj_2.length());
 		if (jsObj_1 != null && jsObj_2 != null){
 			try {
-				System.out.println(" 1 >> "+attribute);
+				//System.out.println(" 1 >> "+attribute);
 				if (jsObj_1.optString(attribute) == jsObj_2.optString(attribute)){		
-					System.out.println(" 2>> "+attribute);
+					//System.out.println(" 2>> "+attribute);
 					if (isValid(jsObj_1.toString()) && isValid(jsObj_2.toString()) ){
-						equalsSubAtt(jsObj_1.toString(),jsObj_2.toString(),attribute);
+						return equalsSubAtt(jsObj_1.toString(),jsObj_2.toString(),attribute);
 					}else{
-						System.out.println("try NOT EQUALS :: ");
+						//System.out.println("try NOT EQUALS :: ");
 						return false;
 					}
 					
-					
 				}else{
-					System.out.println("O QUE TEM AQUI " + jsObj_1.toString());
+					//System.out.println("O QUE TEM AQUI " + jsObj_1.toString());
+					//System.out.println("O QUE TEM AQUI " + jsObj_2.toString());
 
+					if (jsObj_1.toString().equals(jsObj_2.toString())){
+						//System.out.println("É IGUALLL " + jsObj_1.toString());
+						//System.out.println("É IGUALLL " + jsObj_2.toString());
+						return equalsSubAtt(jsObj_1.toString(),jsObj_2.toString(),attribute);
+						
+					}
 				}
 			} catch (Exception e) {
-				System.out.println("NOT Equals exception:: "+jsObj_1.toString());
-				System.out.println("catch Equals11111 :: "+jsObj_1.get(attribute));
-				System.out.println("catch Equals11111 :: "+jsObj_2.get(attribute));
-				for (String ob : jsObj_1.keySet()){
-					//jsObj_1 = (JSONObject) jsObj_1.get(ob);
-					for (String ob2 : jsObj_2.keySet()){
-						//jsObj_2 = (JSONObject) jsObj_2.get(ob2);
-						//System.out.println("new loop key 1 :: "+ob);
-						//System.out.println("new loop key 2 :: "+ob2);
-						if (ob.equals(ob2)){
-							//System.out.println("new value 1 :: "+jsObj_1.get(attribute));
-							//System.out.println("new value 2 :: "+jsObj_2.get(attribute));
-							return true;
-						}
-
-					}
-
-				}
+				//System.out.println("NOT Equals exception:: "+jsObj_1.toString());
+				
 				// TODO: handle exception
 				return false;
 			}
 			
-		}else{
-			if(jsObj_1 == null && source_index_1 != null){
-				System.out.println("nao é null ");
-			}
 		}
 
         return false;
@@ -259,6 +251,113 @@ public class jsonCompare {
 
     }
 
+	//check for the same ID
+	public boolean checkIDExists(Object source_index_1, Object source_index_2, String idName){
+
+		JSONObject jsObj_1 = this.returnJSONOject(source_index_1);
+        JSONObject jsObj_2 = this.returnJSONOject(source_index_2);
+
+		try {
+			if (jsObj_1 != null && jsObj_2 != null){
+				//System.out.println("idname >> "+idName);
+				if (this.isValid(source_index_1.toString()) && this.isValid(source_index_2.toString())){
+					
+					if (!jsObj_1.get(idName).equals(null) && !jsObj_2.get(idName).equals(null)){
+						System.out.println("idname >> "+idName);
+						System.out.println("NAO VAZIO ID >> "+jsObj_1.get(idName));
+						System.out.println("NAO VAZIO ID >> "+jsObj_2.get(idName));
+						return true;
+					}
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("TODO CATCH");
+			return false;
+			// TODO: handle exception
+		}
+		
+
+		return false;
+	}
+
+
+	public boolean isBoolean(Object obj){
+
+		try {
+			if (obj.toString().equals(false)){
+				return true;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return false;
+	}
+
+	public boolean checkIfEquals(Object source_index_1, Object source_index_2, String idName){
+		JSONObject jsObj_1 = this.returnJSONOject(source_index_1);
+        JSONObject jsObj_2 = this.returnJSONOject(source_index_2);
+
+		System.out.println("teste keys");
+
+		System.out.println("key size1 :: "+jsObj_1.keySet().size());
+		System.out.println("key size2 :: "+jsObj_2.keySet().size());
+		
+
+		return false;
+	}
+
+	//this check if keys in json is the same or if is missing a key
+	public boolean checkEqualsKeys(Object source_index_1, Object source_index_2){
+
+		//System.out.println("source index 1 "+source_index_1);
+		//System.out.println("source index 2 "+source_index_2);
+
+		if (!source_index_1.equals(null) && !source_index_2.equals(null)){
+			JSONObject jsObj_1 = this.returnJSONOject(source_index_1);
+        	JSONObject jsObj_2 = this.returnJSONOject(source_index_2);
+
+			if (jsObj_1 == null || jsObj_2 == null){
+				return false;
+			}
+
+			if (jsObj_1.keySet().size() != jsObj_2.keySet().size()){
+				System.out.println("TESTE SEM FALSE" );
+				//System.out.println("Different Key set1 "+jsObj_1.keySet());
+				//System.out.println("Different Key set2 "+jsObj_2.keySet());
+				//return false;
+			}
+			
+			if (jsObj_1.keySet().equals(jsObj_2.keySet())){
+				System.out.println("keySet 1 " + jsObj_1.keySet());
+				System.out.println("keySet 2 " + jsObj_2.keySet());
+				return true;
+			}else{
+				for (String key_1 : jsObj_1.keySet()){
+					for (String key_2 : jsObj_2.keySet()){
+						//System.out.println("File 1 - Key [ "+key_1+" ]");
+						//System.out.println("File 2 - Key [ "+key_2+" ]");
+						if (jsObj_2.keySet().contains(key_1)){
+							//this if is necessary since it can give a false positive, since id contains in some words (entId, offerId, id)
+							if (!key_1.equals(key_2)){
+								System.out.println("NOT SAME key :: key1 "+key_1);
+								System.out.println("NOT SAME key :: key2 "+key_2);
+								return false;
+							}else{
+								System.out.println("Same key :: key1 "+key_1);
+								System.out.println("Same key :: key2 "+key_2);
+							}
+						}
+					}
+				}
+				return false;
+			}
+
+		}
+
+		return false;
+	}
+
 
     public void compareSources(JSONArray source_1, JSONArray source_2, String searchIdValue){		
 		
@@ -268,27 +367,73 @@ public class jsonCompare {
 			//String idName = getIdValue(value_1);
 			//System.out.println("Attribute Id Name: "+value_1.toString());
 			String idName = getIdName(value_1);
+
+			//JSONArray attName_1 = (JSONArray)value_1;
 			
 			source_2.forEach( (value_2) -> {
-				//System.out.println(" source_1 ::" + value_2);
 				
-				if (idName != null){
-					System.out.println("idname >> "+idName);
-					//System.out.println("keeeys :: " + value_1.toString());
-					if(equalsValues(value_1, value_2, idName)){
-						equalsAllValues(value_1, value_2);
-						//System.out.println(" value ::" + value_1);
-						flagFile=true;
-					}
-				}
+				checkEqualsKeys(value_1,value_2);
 			});
-			//System.out.println("Element with id :: "+getIdValue(value_1)+" not found in the second file.");				
-		
 			
         } );
-		//if(flagFile){
-		//	System.out.println("Different files");
-		//}
+		
+    }
+
+	public void compareSources(JSONObject source_1, JSONObject source_2, String searchIdValue){		
+		
+		//String idName = getIdName(searchIdValue);
+
+		for (String key_1 : source_1.keySet()){
+			for (String key_2 : source_2.keySet()){
+
+				if (key_1.equals(key_2)){
+					//System.out.println("keys --> "+key_1);
+					//System.out.println("keys2 --> "+key_2);
+
+
+					//System.out.println("opt source1 --> "+source_1.optJSONObject(key_1));
+					//System.out.println("opt source2 --> "+source_2.optJSONObject(key_2));
+					//NAO MEXE NESSE CODIGO
+					//valor direto ou sub json na base
+					if(source_1.optJSONObject(key_1) == null && source_2.optJSONObject(key_2) == null ){
+						//System.out.println("opt source1 --> "+source_1.optJSONObject(key_1));
+						//System.out.println("opt source2 --> "+source_2.optJSONObject(key_2));
+						//valor direto
+						if (source_1.optJSONArray(key_1) == null && source_2.optJSONArray(key_2) == null){
+							//System.out.println("array1 -> "+source_1.get(key_1));
+							//System.out.println("array2 -> "+source_2.get(key_2));
+							if (source_1.get(key_1).equals(source_2.get(key_2))){
+								System.out.println("Same value.");
+							}else{
+								System.out.println("Different value. \n[ "+key_1+" ]=[ " + source_1.get(key_1)+"] not match with [ "+key_2 +" ]=[ "+source_2.get(key_2)+"]");
+							}
+						}else{
+							//objeto json dentro 
+							System.out.println("else array1 -> "+source_1.get(key_1));
+							System.out.println("else array2 -> "+source_2.get(key_2));
+							this.compareSources(source_1.getJSONArray(key_2),source_2.getJSONArray(key_2), searchIdValue);
+						}
+						//System.out.println("size1 --> "+source_1.get(key_1));
+						//System.out.println("size2 --> "+source_2.get(key_2));
+					}else{
+						//vetor json na base
+						System.out.println("DIFERENT size1 --> "+source_1.get(key_1));
+						System.out.println("DIFERENT size2 --> "+source_2.get(key_2));	
+						
+					}
+
+								
+					//System.out.println("size1 --> "+source_1.get(key_1));
+					//System.out.println("size2 --> "+source_2.get(key_2));
+
+					
+				}
+			}
+
+		}
+
+
+
     }
 	
 }

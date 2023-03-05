@@ -37,9 +37,9 @@ public class OcGuiToolsApplication {
 		//JSONArray jsonArray_4 = jsonObjReturn_4.optJSONArray("content");
 		
 
-		JSONObject jsonObjReturn_3 = jsonObj.getJson("offer_100506.json");
+		JSONObject jsonObjReturn_3 = jsonObj.getJson("18052300104_threshold.json");
 		JSONArray jsonArray_3 = null;
-		JSONObject jsonObjReturn_4 = jsonObj.getJson("offer_100506_copy.json");
+		JSONObject jsonObjReturn_4 = jsonObj.getJson("18052300104_threshold_copy.json");
 		JSONArray jsonArray_4 = null;
 		
 		//JSONObject jsonObjReturn_1 = jsonObj.getJson("tiers_prod.json");
@@ -54,35 +54,54 @@ public class OcGuiToolsApplication {
 					if (jsonObjReturn_3.optJSONArray(key) != null){
 						//equals does not work here, idk why
 						jsonArray_3.put(jsonObjReturn_3.getJSONArray(key));
-						System.out.println(" 1111 :: "+key);
+						System.out.println("File 1 1111 :: "+key);
 					}else{
-						System.out.println(" 2222 :: "+key);		
+						System.out.println("File 1 2222 :: "+key);		
 						jsonArray_3.put(jsonObjReturn_3.get(key));
 					}
-					
-
-
 				}else{
 					
 					if (jsonObjReturn_3.opt(key) != null ){
-						System.out.println(" 3333 :: "+key);
+						System.out.println("File 1 3333 :: "+key);
 						jsonArray_3.put(jsonObjReturn_3.get(key));
 						
 					}
 
 				}
-				//JSONArray js = jsonObjReturn_3.getJSONArray(key);
-				//JSONArray js_2 = jsonObjReturn_3.getJSONObject(key);
-				//jsonArray_3.put(js);
+			}
+		}
+
+		if (jsonObjReturn_4.optString("content").equals("")){
+			//System.out.println("Error :: "+jsonObjReturn_3.toString());
+			//JSONArray jsonArray_3 = jsonObjReturn_3.optJSONArray("content");
+			jsonArray_4 = new JSONArray();
+			for (String key :  jsonObjReturn_4.keySet()){
 				
-				
-				
-				//System.out.println(">>> "+jsonArray_3.toString());
+				if(jsonCmp.isValid(jsonObjReturn_4.toString()) && jsonCmp.isValid(jsonObjReturn_4.get(key).toString()) ){
+					
+					if (jsonObjReturn_4.optJSONArray(key) != null){
+						//equals does not work here, idk why
+						jsonArray_4.put(jsonObjReturn_4.getJSONArray(key));
+						System.out.println("File 2 1111 :: "+key);
+					}else{
+						System.out.println("File 2 2222 :: "+key);		
+						jsonArray_4.put(jsonObjReturn_4.get(key));
+					}
+				}else{
+					
+					if (jsonObjReturn_4.opt(key) != null ){
+						System.out.println("File 2 3333 :: "+key);
+						jsonArray_4.put(jsonObjReturn_4.get(key));
+					}
+
+				}
 			}
 		}
 
 		//jsonCmp.compareSources(jsonArray_1, jsonArray_2, "Id");
-		jsonCmp.compareSources(jsonArray_3, jsonArray_3, "Id");
+		//jsonCmp.compareSources(jsonArray_3, jsonArray_4, "Id");
+		jsonCmp.compareSources(jsonObjReturn_3, jsonObjReturn_4, "Id");
+
 
 	}
 

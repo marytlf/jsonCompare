@@ -1,0 +1,133 @@
+{
+    "defaultBalanceState": {
+        "balanceStateId": 10005,
+        "name": "VOLUME_TRIGGER_100",
+        "version": 0
+    },
+    "name": "ThresholdScheme_18052300104_MASTER",
+    "policyCounter": {
+        "defaultValue": null,
+        "description": null,
+        "grouped": false,
+        "name": "DATA",
+        "policyCounterId": 10002,
+        "version": 0
+    },
+    "thresholdUnitType": "VOLUME",
+    "thresholds": [
+        {
+            "name": "VOLUME_TRIGGER_80",
+            "recurring": false,
+            "recurringType": "IN_BUNDLE",
+            "thId": 11198,
+            "thresholdActions": [
+                {
+                    "actionFlag": "X",
+                    "actionValue": "InQuota",
+                    "balanceState": {
+                        "balanceStateId": 10002,
+                        "name": "InQuota",
+                        "version": 0
+                    },
+                    "deviceGroup": null,
+                    "guiCounter": 0,
+                    "name": "80_Percent_Action",
+                    "notificationTemplate": null,
+                    "offerGroup": null,
+                    "taId": 12797,
+                    "version": 0
+                },
+                {
+                    "actionFlag": "N",
+                    "actionValue": null,
+                    "balanceState": null,
+                    "deviceGroup": null,
+                    "guiCounter": 0,
+                    "name": "SubscriptionBonusCorona80p",
+                    "notificationTemplate": {
+                        "ntId": 10006,
+                        "template": "Subscription_80p_Compra",
+                        "templateType": "SMS",
+                        "version": 0
+                    },
+                    "offerGroup": null,
+                    "taId": 12798,
+                    "version": 0
+                }
+            ],
+            "thresholdTypeCode": "PU",
+            "value": "80.000000",
+            "version": 2
+        },
+        {
+            "name": "VOLUME_TRIGGER_100",
+            "recurring": false,
+            "recurringType": "IN_BUNDLE",
+            "thId": 11197,
+            "thresholdActions": [
+                {
+                    "actionFlag": "R",
+                    "actionValue": "RB_51",
+                    "balanceState": null,
+                    "deviceGroup": null,
+                    "guiCounter": 0,
+                    "name": "WHEN_USED_UP_3G_RULE",
+                    "notificationTemplate": null,
+                    "offerGroup": null,
+                    "taId": 12794,
+                    "version": 0
+                },
+                {
+                    "actionFlag": "X",
+                    "actionValue": "VOLUME_TRIGGER_80",
+                    "balanceState": {
+                        "balanceStateId": 10004,
+                        "name": "VOLUME_TRIGGER_80",
+                        "version": 0
+                    },
+                    "deviceGroup": null,
+                    "guiCounter": 0,
+                    "name": "100_Percent_Action",
+                    "notificationTemplate": null,
+                    "offerGroup": null,
+                    "taId": 12793,
+                    "version": 0
+                },
+                {
+                    "actionFlag": "R",
+                    "actionValue": "RB_5",
+                    "balanceState": null,
+                    "deviceGroup": null,
+                    "guiCounter": 0,
+                    "name": "WHEN_EXIT_USED_UP_4G_RULE",
+                    "notificationTemplate": null,
+                    "offerGroup": null,
+                    "taId": 12795,
+                    "version": 0
+                },
+                {
+                    "actionFlag": "N",
+                    "actionValue": null,
+                    "balanceState": null,
+                    "deviceGroup": null,
+                    "guiCounter": 0,
+                    "name": "SubscriptionVolWarning100percentNovosControlesSMS",
+                    "notificationTemplate": {
+                        "ntId": 10080,
+                        "template": "Subscription_Vol_Warning_80p_BL_SMS",
+                        "templateType": "SMS",
+                        "version": 0
+                    },
+                    "offerGroup": null,
+                    "taId": 12796,
+                    "version": 0
+                }
+            ],
+            "thresholdTypeCode": "PU",
+            "value": "100.000000",
+            "version": 2
+        }
+    ],
+    "thsId": 10002,
+    "version": 2
+}
