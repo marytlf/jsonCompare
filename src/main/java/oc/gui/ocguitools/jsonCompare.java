@@ -1,7 +1,6 @@
 package oc.gui.ocguitools;
 
-
-import java.util.List;
+import java.util.Random;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -359,7 +358,7 @@ public class jsonCompare {
 	}
 
 
-    public void compareSources(JSONArray source_1, JSONArray source_2, String searchIdValue){		
+    public void compareSources_2(JSONArray source_1, JSONArray source_2, String searchIdValue){		
 		
         source_1.forEach( (value_1) -> {
             //System.out.println("value :: "+searchValue+ " source_1 ::" + value_1);
@@ -403,22 +402,63 @@ public class jsonCompare {
 							//System.out.println("array1 -> "+source_1.get(key_1));
 							//System.out.println("array2 -> "+source_2.get(key_2));
 							if (source_1.get(key_1).equals(source_2.get(key_2))){
-								System.out.println("Same value.");
+								System.out.println("Same value.\n[ "+key_1+" ]=[ " + source_1.get(key_1)+" ] match with [ "+key_2 +" ]=[ "+source_2.get(key_2)+"]");
+								System.out.println("-----------------------------------------------------------------------------------------------------------------------");
 							}else{
-								System.out.println("Different value. \n[ "+key_1+" ]=[ " + source_1.get(key_1)+"] not match with [ "+key_2 +" ]=[ "+source_2.get(key_2)+"]");
+								System.out.println("Different value. \n[ "+key_1+" ]=[ " + source_1.get(key_1)+" ] not match with [ "+key_2 +" ]=[ "+source_2.get(key_2)+"]");
+								System.out.println("-----------------------------------------------------------------------------------------------------------------------");
 							}
-						}else{
+						}
+						/*/ 
+						else{
 							//objeto json dentro 
+							//System.out.println("opt array1 -> "+source_1.optJSONArray(key_1));
+							//System.out.println("opt array2 -> "+source_2.optJSONArray(key_2));
+
+							
 							System.out.println("else array1 -> "+source_1.get(key_1));
 							System.out.println("else array2 -> "+source_2.get(key_2));
-							this.compareSources(source_1.getJSONArray(key_2),source_2.getJSONArray(key_2), searchIdValue);
+							 
+							//System.out.println("else array1 SIZE -> "+jsObj_1.length());
+							//System.out.println("else array2 SIZE -> "+jsObj_2.length());
+
+
+							if (source_1.length() > 1 && source_2.length() > 1 ){
+								//JSONObject jsonObj_1 = returnJSONOject(jsObj_1.get(key_1));
+								//JSONObject jsonObj_2 = returnJSONOject(jsObj_1.get(key_2));
+								JSONArray jsObj_aux_1 = source_1.names();
+								JSONArray jsObj_aux_2 = source_2.names();
+								
+								System.out.println("else JSONarray1 SIZE -> "+jsObj_aux_1.length());
+								System.out.println("else JSONarray2 SIZE -> "+jsObj_aux_2.length());
+
+								for (int j= 0 ; j < source_1.length(); j++){
+									JSONArray aux = (JSONArray) source_1.get(key_1);
+									//System.out.println("posicao "+j+"=="+aux.get(j));
+								}
+								for (int i = 0; i < jsObj_aux_1.length() ; i++ ){
+									String keys = jsObj_aux_1.getString(i);
+
+									System.out.println("KEYSSSSSSSSSS -> "+keys);
+									
+									//System.out.println("else JSONarray1 VAL -> "+String.valueOf(jsObj_1.getString(keys).toString()));
+									//System.out.println("else JSONarray2 VAL -> "+jsObj_2.getString(keys).toString());
+								
+									//this.compareSources(jsObj_aux_1.getJSONObject(i),jsObj_aux_2.getJSONObject(i), searchIdValue);
+								}
+							}else{
+								//this.compareSources(jsObj_aux_1,jsObj_aux_2, searchIdValue);
+							}
+							
 						}
+						/*/
 						//System.out.println("size1 --> "+source_1.get(key_1));
 						//System.out.println("size2 --> "+source_2.get(key_2));
 					}else{
 						//vetor json na base
-						System.out.println("DIFERENT size1 --> "+source_1.get(key_1));
-						System.out.println("DIFERENT size2 --> "+source_2.get(key_2));	
+						//System.out.println("DIFERENT size1 --> "+source_1.get(key_1));
+						//System.out.println("DIFERENT size2 --> "+source_2.get(key_2));	
+						this.compareSources(source_1.getJSONObject(key_1),source_2.getJSONObject(key_2), searchIdValue);
 						
 					}
 
@@ -431,9 +471,25 @@ public class jsonCompare {
 			}
 
 		}
-
-
-
     }
+
+	public void readJSONObject(JSONArray source_1, JSONArray source_2){
+		
+		JsonWriter jsonWriter = new JsonWriter();
+		source_1.forEach( (value_1) -> {
+			Random rand = new Random(); 
+			// Setting the upper bound to generate the
+			// random numbers in specific range
+			int upperbound = 25;
+			
+			String nameFIle;
+            nameFIle = "Condition_"+rand.nextInt(upperbound);
+			
+			//System.out.println(">>>"+value_1.toString());
+			jsonWriter.writeJSONFile((JSONObject)value_1,nameFIle);
+			
+        } );
+	}
+
 	
 }
