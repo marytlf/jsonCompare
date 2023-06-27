@@ -15,8 +15,8 @@ public class JsonWriter {
     }
 
     public void writeJSONFile(JSONObject source_1, String path){
-		System.out.println(">>>"+source_1.toString());
-        Path writerJson = (Path) Paths.get(".", "src", "test", "resources","output", path);
+		//System.out.println(">>>"+source_1.toString());
+        Path writerJson = (Path) Paths.get(".", "src", "test", "resources","output_lab", path);
 
 		try (PrintWriter out = new PrintWriter(new FileWriter(writerJson.toString()))) {
             out.write(source_1.toString());

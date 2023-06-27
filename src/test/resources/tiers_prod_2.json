@@ -10,6 +10,15 @@
             "ruleType": "STATIC_RULE_BASE"
         },
         {
+            "tierId": 10105,
+            "version": 0,
+            "name": "Tier_1_1",
+            "tierInQuotaRule": "1",
+            "tierOutOfQuotaRule": "1",
+            "description": "WithPlanAndPunished_WithPlanAndPunished",
+            "ruleType": "STATIC_RULE_BASE"
+        },
+        {
             "tierId": 10004,
             "version": 0,
             "name": "Tier_202_202",

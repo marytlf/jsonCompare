@@ -18,7 +18,7 @@ public class OcGuiToolsApplication {
 		String idName = null;
 		String idaux = null;
 
-		JSONObject jsonObjReturn_1 = jsonObj.getJson("allcondition_prod.json");
+		JSONObject jsonObjReturn_1 = jsonObj.getJson("all_condition_dev1.json");
 		//JSONObject jsonObjReturn_1 = jsonObj.getJson("tiers_prod.json");
 		JSONArray jsonArray_1 = jsonObjReturn_1.optJSONArray("content");
 

@@ -480,7 +480,7 @@ public class jsonCompare {
 			Random rand = new Random(); 
 			// Setting the upper bound to generate the
 			// random numbers in specific range
-			int upperbound = 25;
+			int upperbound = 600;
 			
 			String nameFIle;
             nameFIle = "Condition_"+rand.nextInt(upperbound);
