@@ -137,10 +137,10 @@ public class WriteCSV {
         try {
             //ocObj_mapa.values();
 
-        //writerHandler.close();
-        writerHandler.append(column_type+","+value+"\n");    
-        writerHandler.flush();
-        
+            //writerHandler.close();
+            writerHandler.append(column_type+","+value+"\n");    
+            writerHandler.flush();
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

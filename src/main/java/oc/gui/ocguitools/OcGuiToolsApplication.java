@@ -11,43 +11,30 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OcGuiToolsApplication {
 	
 	public static void main(String[] args) {
-		SpringApplication.run(OcGuiToolsApplication.class, args);
+		//SpringApplication.run(OcGuiToolsApplication.class, args);
 
 		JsonReader jsonObj = new JsonReader();
 		jsonCompare jsonCmp = new jsonCompare();
 		String idName = null;
 		String idaux = null;
 
-		JSONObject jsonObjReturn_1 = jsonObj.getJson("all_condition_dev1.json");
-		//JSONObject jsonObjReturn_1 = jsonObj.getJson("tiers_prod.json");
-		JSONArray jsonArray_1 = jsonObjReturn_1.optJSONArray("content");
+		//JSONObject jsonObjReturn_1 = jsonObj.getJson("all_condition_dev1.json");
+		//JSONObject jsonObjReturn_1 = jsonObj.getJson("offers.json");
+		JSONArray jsonArray_1 = jsonObj.getJsonArray("offers.json");
 
 
-
-		//JSONObject jsonObjReturn_1 = jsonObj.getJson("tiers_qa.json");
-		//JSONObject jsonObjReturn_1 = jsonObj.getJson("tiers_prod.json");
-		//JSONArray jsonArray_1 = jsonObjReturn_1.optJSONArray("content");
-
-
-		JSONObject jsonObjReturn_2 = jsonObj.getJson("tiers_prod.json");
-		JSONArray jsonArray_2 = jsonObjReturn_2.optJSONArray("content");
-
-		
-
-		//JSONObject jsonObjReturn_1 = jsonObj.getJson("18052300104_entitlements.json");
-		//JSONObject jsonObjReturn_1 = jsonObj.getJson("tiers_prod.json");
-		//JSONArray jsonArray_1 = jsonObjReturn_1.optJSONArray("content");
-
-
-		//JSONObject jsonObjReturn_2 = jsonObj.getJson("18052300104_entitlements_copy.json");
+		//JSONObject jsonObjReturn_2 = jsonObj.getJson("tiers_prod.json");
 		//JSONArray jsonArray_2 = jsonObjReturn_2.optJSONArray("content");
+
+		//JSONObject jsonObjReturn_2 = jsonObj.getJson("offers_prod_sorted.json");
+		JSONArray jsonArray_2 = jsonObj.getJsonArray("offers copy.json");
 		
 /*/
 		JSONObject jsonObjReturn_1 = jsonObj.getJson("18052300104_threshold.json");
 		JSONArray jsonArray_1 = null;
 		JSONObject jsonObjReturn_2 = jsonObj.getJson("18052300104_threshold_copy.json");
 		JSONArray jsonArray_2 = null;
-/*/		
+	
 		//JSONObject jsonObjReturn_1 = jsonObj.getJson("tiers_prod.json");
 		if (jsonObjReturn_1.optString("content").equals("")){
 			//System.out.println("Error :: "+jsonObjReturn_1.toString());
@@ -103,12 +90,13 @@ public class OcGuiToolsApplication {
 				}
 			}
 		}
-
-		//jsonCmp.compareSources(jsonArray_1, jsonArray_2, "Id");
-		//jsonCmp.compareSources(jsonArray_1, jsonArray_2, "Id");
+/*/	
+		jsonCmp.compareSources(jsonArray_1, jsonArray_2);
 		//jsonCmp.compareSources(jsonObjReturn_1, jsonObjReturn_2, "Id");
+		//jsonCmp.compareSources(jsonObjReturn_1, jsonObjReturn_2);
+		
 
-		jsonCmp.readJSONObject(jsonArray_1, jsonArray_1);
+		//jsonCmp.readJSONObject(jsonArray_1, jsonArray_1);
 	}
 
 	

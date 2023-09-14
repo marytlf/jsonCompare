@@ -1,7 +1,7 @@
 package oc.gui.ocguitools;
 
 import org.json.JSONObject;
-
+import org.json.JSONArray;
 import oc.gui.dumpJSON.OCObject;
 
 import java.io.BufferedReader;
@@ -49,22 +49,46 @@ public class JsonReader {
     }
 
     public JSONObject getJson(String fileName){
+        
         //Path readerJsonQA = Paths.get(".", "src", "test", "resources", "tiers_qa.json");
         //Path readerJsonProd = Paths.get(".", "src", "test", "resources", "tiers_prod.json");
     
         try {
             Path readerJson = Paths.get(".", "src", "test", "resources", fileName);
+            
             BufferedReader reader = Files.newBufferedReader(readerJson);
 
             String line = readAllLines(reader);
     
-
             JSONObject jsonObj = new JSONObject(line);
             System.out.println(">>"+readerJson.toAbsolutePath());
+           
             return jsonObj;
         } catch (Exception e) {
             // TODO: handle exception
             System.err.println("File not found.");
+            System.err.println("Exception :: "+e.getMessage());
+            return null;
+        }
+    }
+
+    public JSONArray getJsonArray(String fileName){
+        
+        //Path readerJsonQA = Paths.get(".", "src", "test", "resources", "tiers_qa.json");
+        //Path readerJsonProd = Paths.get(".", "src", "test", "resources", "tiers_prod.json");
+    
+        try {
+            Path readerJson = Paths.get(".", "src", "test", "resources", fileName);
+            
+            BufferedReader reader = Files.newBufferedReader(readerJson);
+            String line = readAllLines(reader);
+            JSONArray jsArray = new JSONArray(line.toString());
+            System.out.println(">>"+readerJson.toAbsolutePath());
+            return jsArray;
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.err.println("File not found.");
+            System.err.println("Exception :: "+e.getMessage());
             return null;
         }
     }

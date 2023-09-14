@@ -379,28 +379,18 @@ public class jsonCompare {
     }
 
 	public void compareSources(JSONObject source_1, JSONObject source_2, String searchIdValue){		
-		
-		//String idName = getIdName(searchIdValue);
-
 		for (String key_1 : source_1.keySet()){
 			for (String key_2 : source_2.keySet()){
 
 				if (key_1.equals(key_2)){
-					//System.out.println("keys --> "+key_1);
-					//System.out.println("keys2 --> "+key_2);
-
-
-					//System.out.println("opt source1 --> "+source_1.optJSONObject(key_1));
-					//System.out.println("opt source2 --> "+source_2.optJSONObject(key_2));
+					
 					//NAO MEXE NESSE CODIGO
 					//valor direto ou sub json na base
 					if(source_1.optJSONObject(key_1) == null && source_2.optJSONObject(key_2) == null ){
-						//System.out.println("opt source1 --> "+source_1.optJSONObject(key_1));
-						//System.out.println("opt source2 --> "+source_2.optJSONObject(key_2));
+						
 						//valor direto
 						if (source_1.optJSONArray(key_1) == null && source_2.optJSONArray(key_2) == null){
-							//System.out.println("array1 -> "+source_1.get(key_1));
-							//System.out.println("array2 -> "+source_2.get(key_2));
+							
 							if (source_1.get(key_1).equals(source_2.get(key_2))){
 								System.out.println("Same value.\n[ "+key_1+" ]=[ " + source_1.get(key_1)+" ] match with [ "+key_2 +" ]=[ "+source_2.get(key_2)+"]");
 								System.out.println("-----------------------------------------------------------------------------------------------------------------------");
@@ -408,70 +398,32 @@ public class jsonCompare {
 								System.out.println("Different value. \n[ "+key_1+" ]=[ " + source_1.get(key_1)+" ] not match with [ "+key_2 +" ]=[ "+source_2.get(key_2)+"]");
 								System.out.println("-----------------------------------------------------------------------------------------------------------------------");
 							}
-						}
-						/*/ 
-						else{
-							//objeto json dentro 
-							//System.out.println("opt array1 -> "+source_1.optJSONArray(key_1));
-							//System.out.println("opt array2 -> "+source_2.optJSONArray(key_2));
-
+						}else{
 							
-							System.out.println("else array1 -> "+source_1.get(key_1));
-							System.out.println("else array2 -> "+source_2.get(key_2));
-							 
-							//System.out.println("else array1 SIZE -> "+jsObj_1.length());
-							//System.out.println("else array2 SIZE -> "+jsObj_2.length());
-
-
-							if (source_1.length() > 1 && source_2.length() > 1 ){
-								//JSONObject jsonObj_1 = returnJSONOject(jsObj_1.get(key_1));
-								//JSONObject jsonObj_2 = returnJSONOject(jsObj_1.get(key_2));
-								JSONArray jsObj_aux_1 = source_1.names();
-								JSONArray jsObj_aux_2 = source_2.names();
-								
-								System.out.println("else JSONarray1 SIZE -> "+jsObj_aux_1.length());
-								System.out.println("else JSONarray2 SIZE -> "+jsObj_aux_2.length());
-
-								for (int j= 0 ; j < source_1.length(); j++){
-									JSONArray aux = (JSONArray) source_1.get(key_1);
-									//System.out.println("posicao "+j+"=="+aux.get(j));
-								}
-								for (int i = 0; i < jsObj_aux_1.length() ; i++ ){
-									String keys = jsObj_aux_1.getString(i);
-
-									System.out.println("KEYSSSSSSSSSS -> "+keys);
-									
-									//System.out.println("else JSONarray1 VAL -> "+String.valueOf(jsObj_1.getString(keys).toString()));
-									//System.out.println("else JSONarray2 VAL -> "+jsObj_2.getString(keys).toString());
-								
-									//this.compareSources(jsObj_aux_1.getJSONObject(i),jsObj_aux_2.getJSONObject(i), searchIdValue);
-								}
-							}else{
-								//this.compareSources(jsObj_aux_1,jsObj_aux_2, searchIdValue);
-							}
-							
+							this.compareSources(source_1.optJSONArray(key_1), source_2.optJSONArray(key_2));
 						}
-						/*/
-						//System.out.println("size1 --> "+source_1.get(key_1));
-						//System.out.println("size2 --> "+source_2.get(key_2));
+						
 					}else{
-						//vetor json na base
-						//System.out.println("DIFERENT size1 --> "+source_1.get(key_1));
-						//System.out.println("DIFERENT size2 --> "+source_2.get(key_2));	
+						
 						this.compareSources(source_1.getJSONObject(key_1),source_2.getJSONObject(key_2), searchIdValue);
 						
 					}
-
-								
-					//System.out.println("size1 --> "+source_1.get(key_1));
-					//System.out.println("size2 --> "+source_2.get(key_2));
-
-					
 				}
 			}
 
 		}
     }
+
+	public void compareSources(JSONArray source_1, JSONArray source_2){		
+
+		for (int i = 0 ; i < source_1.length(); ++i){
+			
+			JSONObject jsObj_1 = (JSONObject) source_1.getJSONObject(i);
+			JSONObject jsObj_2 = (JSONObject) source_2.getJSONObject(i);
+			
+			this.compareSources(jsObj_1,jsObj_2,"");
+		}
+	}
 
 	public void readJSONObject(JSONArray source_1, JSONArray source_2){
 		
@@ -490,6 +442,7 @@ public class jsonCompare {
 			
         } );
 	}
+
 
 	
 }
